@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produkty</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Správa produktů</h1>
+    <div id="product-settings"></div>
+
+    <div class="section">
+      <h2>Přidat nový produkt</h2>
+      <input type="text" id="new-name" placeholder="Název produktu" />
+      <input type="number" id="new-price" placeholder="Cena (Kč)" />
+      <button onclick="addProduct()">Přidat</button>
+    </div>
+
+    <nav>
+      <a href="index.html">🏠 Prodej</a>
+      <a href="history.html">📊 Historie</a>
+    </nav>
+  </div>
+
+  <script src="products.js"></script>
+</body>
+</html>
