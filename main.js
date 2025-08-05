@@ -7,7 +7,12 @@ const defaultProducts = [
   { id: 5, name: "Křupky", price: 35 },
 ];
 
-let products = JSON.parse(localStorage.getItem("products")) || defaultProducts;
+let products = JSON.parse(localStorage.getItem("products"));
+if (!products || products.length === 0) {
+  products = defaultProducts;
+  localStorage.setItem("products", JSON.stringify(products));
+}
+
 let quantities = {};
 
 function renderProducts() {
