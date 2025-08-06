@@ -1,63 +1,31 @@
-let products = JSON.parse(localStorage.getItem("products")) || [];
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Správa produktů</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Správa produktů</h1>
 
-function renderProductSettings() {
-  const container = document.getElementById("product-settings");
-  container.innerHTML = "";
+    <div id="product-settings"></div>
 
-  products.forEach((p, i) => {
-    const div = document.createElement("div");
-    div.innerHTML = `
-      <div style="margin-bottom: 10px;">
-        <input value="${p.name}" onchange="editProduct(${i}, 'name', this.value)" />
-        <input type="number" value="${p.price}" onchange="editProduct(${i}, 'price', this.value)" />
-        <button onclick="deleteProduct(${i})">🗑️</button>
-      </div>
-    `;
-    container.appendChild(div);
-  });
-}
+    <div class="section">
+      <h2>Přidat nový produkt</h2>
+      <input type="text" id="new-name" placeholder="Název produktu" />
+      <input type="number" id="new-price" placeholder="Cena (Kč)" />
+      <button onclick="addProduct()">➕ Přidat</button>
+    </div>
 
-function editProduct(index, key, value) {
-  if (key === "price") value = Number(value);
-  products[index][key] = value;
-  localStorage.setItem("products", JSON.stringify(products));
-}
+    <nav>
+      <a href="index.html">🏠 Prodej</a>
+      <a href="history.html">📊 Historie</a>
+    </nav>
+  </div>
 
-function deleteProduct(index) {
-  products.splice(index, 1);
-  localStorage.setItem("products", JSON.stringify(products));
-  renderProductSettings();
-}
-
-function addProduct() {
-  const name = document.getElementById("new-name").value.trim();
-  const price = Number(document.getElementById("new-price").value);
-
-  if (!name || isNaN(price) || price <= 0) {
-    alert("Zadej platný název a cenu.");
-    return;
-  }
-
-  const newProduct = {
-    id: Date.now(),
-    name,
-    price
-  };
-
-  products.push(newProduct);
-  localStorage.setItem("products", JSON.stringify(products));
-
-  // Vyčistit vstupy
-  document.getElementById("new-name").value = "";
-  document.getElementById("new-price").value = "";
-
-  renderProductSettings();
-}
-
-// Volání na načtení po načtení stránky
-renderProductSettings();
-
-// ✅ Zpřístupnění funkcí pro HTML onclick
-window.editProduct = editProduct;
-window.deleteProduct = deleteProduct;
-window.addProduct = addProduct;
+  <!-- ⚠️ Vynucení nové verze scriptu -->
+  <script src="products.js?v=3"></script>
+</body>
+</html>
