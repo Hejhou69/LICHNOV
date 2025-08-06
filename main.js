@@ -19,11 +19,12 @@ function renderProducts() {
   container.innerHTML = "";
   products.forEach((p) => {
     const div = document.createElement("div");
+    div.classList.add("product");
     div.innerHTML = `
-      <div>
-        <strong>${p.name}</strong> (${p.price} Kč)
+      <div><strong>${p.name}</strong> (${p.price} Kč)</div>
+      <div class="product-buttons">
         <button onclick="updateQuantity(${p.id}, -1)">–</button>
-        <span id="qty-${p.id}">0</span>
+        <span class="qty" id="qty-${p.id}">0</span>
         <button onclick="updateQuantity(${p.id}, 1)">+</button>
       </div>
     `;
