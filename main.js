@@ -1,4 +1,3 @@
-
 const defaultProducts = [
   { id: 1, name: "Pivo Alko", price: 40 },
   { id: 2, name: "Pivo Nealko", price: 40 },
@@ -20,14 +19,14 @@ function renderProducts() {
   container.innerHTML = "";
   products.forEach((p) => {
     const div = document.createElement("div");
-    div.innerHTML = \`
+    div.innerHTML = `
       <div>
-        <strong>\${p.name}</strong> (\${p.price} Kč)
-        <button onclick="updateQuantity(\${p.id}, -1)">–</button>
-        <span id="qty-\${p.id}">0</span>
-        <button onclick="updateQuantity(\${p.id}, 1)">+</button>
+        <strong>${p.name}</strong> (${p.price} Kč)
+        <button onclick="updateQuantity(${p.id}, -1)">–</button>
+        <span id="qty-${p.id}">0</span>
+        <button onclick="updateQuantity(${p.id}, 1)">+</button>
       </div>
-    \`;
+    `;
     container.appendChild(div);
   });
 }
