@@ -3,22 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prodejní aplikace</title>
+  <title>Prodej</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    :root {
+      --bg: #ffffff;
+      --text: #000000;
+      --box: #f0f0f0;
+    }
+
+    body.dark {
+      --bg: #121212;
+      --text: #ffffff;
+      --box: #1f1f1f;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background-color: var(--box);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .product {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .product span {
+      margin: 0 10px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 5px 10px;
+      margin: 2px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 6px;
+      font-size: 16px;
+      margin: 5px 0;
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    nav {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .theme-toggle {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .theme-toggle button {
+      padding: 6px 12px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Prodej</h1>
+
     <div id="product-list"></div>
 
     <div class="section">
-      <label for="paid">Zaplaceno (Kč):</label>
-      <input type="number" id="paid" inputmode="numeric" />
-      <p>Vrátit: <strong id="change">0</strong> Kč</p>
-      <p>Celkem: <strong id="total">0</strong> Kč</p>
+      <p><strong>Celkem:</strong> <span id="total">0</span> Kč</p>
+      <label>Zaplaceno:
+        <input type="number" id="paid" placeholder="Zadaná částka" />
+      </label>
+      <p><strong>Vrátit:</strong> <span id="change">0</span> Kč</p>
     </div>
 
-    <div class="buttons">
+    <div class="section">
       <button onclick="saveSale()">💾 Uložit prodej</button>
       <button onclick="resetSale()">🗑️ Vymazat</button>
     </div>
@@ -27,9 +108,32 @@
       <a href="products.html">📦 Produkty</a>
       <a href="history.html">📊 Historie</a>
     </nav>
+
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">🌗 Přepnout režim</button>
+    </div>
   </div>
 
-  <!-- DŮLEŽITÉ: přidáno ?v=1 kvůli kešování -->
-  <script src="main.js?v=5"></script>
+  <script src="main.js?v=6"></script>
+  <script>
+    // Přepínání světlý / tmavý režim
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }
+
+    function toggleTheme() {
+      const current = localStorage.getItem("theme") === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", current);
+      applyTheme(current);
+    }
+
+    // Aplikuj zvolený režim při načtení
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+  </script>
 </body>
 </html>
