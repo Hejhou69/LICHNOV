@@ -13,6 +13,7 @@
       background-color: var(--bg);
       color: var(--text);
       transition: background-color 0.3s, color 0.3s;
+      font-size: 18px;
     }
 
     :root {
@@ -30,58 +31,85 @@
     .container {
       max-width: 600px;
       margin: 2rem auto;
-      padding: 1rem;
+      padding: 1.5rem;
       background-color: var(--box);
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
     }
 
     h1 {
       text-align: center;
+      font-size: 28px;
     }
 
     .product {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 8px 0;
+      margin: 16px 0;
     }
 
     .product span {
-      margin: 0 10px;
+      margin: 0 12px;
+      font-size: 20px;
       font-weight: bold;
     }
 
     button {
-      padding: 5px 10px;
-      margin: 2px;
+      padding: 10px 16px;
+      font-size: 20px;
+      border: none;
+      border-radius: 6px;
+      background-color: #ddd;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ccc;
     }
 
     input[type="number"] {
       width: 100%;
-      padding: 6px;
-      font-size: 16px;
-      margin: 5px 0;
+      padding: 10px;
+      font-size: 20px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
     }
 
     .section {
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
     nav {
-      margin-top: 20px;
+      margin-top: 24px;
       display: flex;
       justify-content: space-between;
     }
 
     .theme-toggle {
-      margin-top: 20px;
+      margin-top: 30px;
       text-align: center;
     }
 
     .theme-toggle button {
-      padding: 6px 12px;
-      font-size: 16px;
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #aaa;
+      color: white;
+    }
+
+    .product-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .qty {
+      font-size: 22px;
+      width: 30px;
+      display: inline-block;
+      text-align: center;
     }
   </style>
 </head>
@@ -114,7 +142,7 @@
     </div>
   </div>
 
-  <script src="main.js?v=6"></script>
+  <script src="main.js?v=7"></script>
   <script>
     // Přepínání světlý / tmavý režim
     function applyTheme(theme) {
@@ -131,7 +159,6 @@
       applyTheme(current);
     }
 
-    // Aplikuj zvolený režim při načtení
     const savedTheme = localStorage.getItem("theme") || "light";
     applyTheme(savedTheme);
   </script>
