@@ -77,3 +77,7 @@ function saveSale() {
 
 document.getElementById("paid").addEventListener("input", updateTotals);
 renderProducts();
+
+window.updateQuantity = updateQuantity;
+window.saveSale = saveSale;
+window.resetSale = resetSale;
